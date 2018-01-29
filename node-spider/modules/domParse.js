@@ -12,5 +12,20 @@ function getText (h, selector) {
     return arr;
 }
 
+function getProperties (h, selector, name) {
+    let $ = cheerio.load(h)
+    let col = $(selector, h)
 
-module.exports = getText
+    let arr = []
+    for (let i = 0, len = col.length; i < len; i++) {
+        arr.push(col[i].attribs[name])
+    }
+
+    return arr;
+}
+
+
+module.exports = {
+    getText,
+    getProperties
+}
