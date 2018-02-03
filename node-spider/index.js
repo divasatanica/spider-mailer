@@ -13,7 +13,6 @@ switch (_args[2]) {
     case 'douban-top10': {
         getMovieRank(bootOptions).then(data => {
             let html = movieHTMLRender(data)
-
             sendMail('豆瓣电影排行榜', html)
         }).catch(e => {
             console.log(e)
