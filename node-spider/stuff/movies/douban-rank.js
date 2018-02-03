@@ -16,7 +16,7 @@ const KEY_NAME = {
     '导演': 'director',
     '编剧': 'creator',
     '主演': 'actors',
-    '上映日期:': 'up_date_china'
+    '上映日期:': 'up_date'
 }
 
 async function getMovieRank (options){
@@ -49,9 +49,10 @@ async function getMovieRank (options){
             h: info_h
         }
         for (let i = 0; i < ITEM_COUNT; i ++) {
-            _addInfo(opt, `#info > span:nth-child(${1 + 2 * i}) > span.pl`, `#info > span:nth-child(${1 + 2 * i}) > span.attrs a`, result)
+            opt.ks = `#info > span:nth-child(${1 + 2 * i}) > span.pl`
+            opt.vs = `#info > span:nth-child(${1 + 2 * i}) > span.attrs a`
+            _addInfo(opt, result)
         }
-        _addInfo(opt, '#info > span:nth-child(18)', '#info > span:nth-child(19)', result)
         result.preview = (domParse.getText(info_h, '#link-report > span:nth-child(1)'))[0].trim()
         arr.push(result)
     }
@@ -61,13 +62,18 @@ async function getMovieRank (options){
     return arr
 }
 
+function _addInfo(opt, result) {
+    let buf = _getKeyValue(opt)
+    result[KEY_NAME[buf.key]] = buf.val
+}
+
 function _getKeyValue (opt) {
     let _inner = opt.h
     let result, _pl, _attrs
 
     try {
-        _pl = domParse.getText(_inner, opt.ks)
-        _attrs = domParse.getText(_inner, opt.vs)
+        _pl = domParse.getText(_inner, opt.ks, opt.ki)
+        _attrs = domParse.getText(_inner, opt.vs, opt.vi)
         result = {
             key: _pl[0],
             val: _attrs.join('/')
@@ -76,14 +82,6 @@ function _getKeyValue (opt) {
         result = {}
     }
     return result
-}
-
-function _addInfo(opt, ks, vs, result) {
-    let buf
-    opt.ks = ks
-    opt.vs = vs
-    buf = _getKeyValue(opt)
-    result[KEY_NAME[buf.key]] = buf.val
 }
 
 getMovieRank().catch(e => {
