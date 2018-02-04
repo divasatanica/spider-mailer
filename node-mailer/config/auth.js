@@ -1,8 +1,12 @@
 const auth = {
-    service: 'qq',
+    service: 'gmail',
+    // auth: {
+    //     user: 'jayhebes@vip.qq.com',
+    //     pass: 'fwsgibrwjondbebc'
+    // }
     auth: {
-        user: 'jayhebes@vip.qq.com',
-        pass: 'fwsgibrwjondbebc'
+        user: 'coma.desperado@gmail.com',
+        pass: '541199811cc'
     }
 }
 
