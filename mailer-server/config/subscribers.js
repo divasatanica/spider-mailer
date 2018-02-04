@@ -17,7 +17,11 @@ const subs = [
     {
         address: '541199811@qq.com',
         name: '曾CTO'
-    }
+    },
+		{
+				address: 'kehuang0620@163.com',
+				name: '彭弟妹的小弟'
+		}
 ]
 
 module.exports = subs

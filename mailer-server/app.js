@@ -22,6 +22,9 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/mail', gmail)
+app.use('/', (req, res) => {
+	res.render('index')
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
