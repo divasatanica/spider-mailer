@@ -11,7 +11,7 @@ let _args = process.argv
 
 switch (_args[3]) {
     case 'douban-top10': {
-        getMovieRank(envOpt() && bootOptions).then(data => {
+        getMovieRank(envOpt() || bootOptions).then(data => {
             let html = movieHTMLRender(data)
             sendMail('豆瓣电影排行榜', html)
         }).catch(e => {
