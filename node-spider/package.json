@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "startdev": "node index.js -- dev",
-    "startpro": "node index.js -- pro"
+    "startdev": "node index.js dev",
+    "startpro": "node index.js pro"
   },
   "author": "coma",
   "license": "ISC",
