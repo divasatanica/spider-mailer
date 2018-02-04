@@ -9,13 +9,18 @@ bootOptions.headless = true
 
 let _args = process.argv
 
-switch (_args[2]) {
+switch (_args[3]) {
     case 'douban-top10': {
-        getMovieRank(bootOptions).then(data => {
+        getMovieRank(isDev() && bootOptions).then(data => {
             let html = movieHTMLRender(data)
             sendMail('豆瓣电影排行榜', html)
         }).catch(e => {
             console.log(e)
         })
+        break
     }
+}
+
+function isDev () {
+    return process.argv[2] === 'dev'
 }
