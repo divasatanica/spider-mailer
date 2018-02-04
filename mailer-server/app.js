@@ -23,7 +23,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/mail', gmail)
 app.use('/', (req, res) => {
-	res.render('index')
+	res.render('index', {
+    title: 'My Crafted World'
+  })
 })
 
 // catch 404 and forward to error handler
