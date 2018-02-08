@@ -5,7 +5,8 @@ const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
-const gmail = require('./routes/index')
+const gmail = require('./routes/mail')
+const subs = require('./routes/subs')
 
 const app = express()
 
@@ -21,7 +22,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+// stuff route
 app.use('/mail', gmail)
+app.use('/subs/doubanmovie', subs)
+
+// main route
 app.use('/', (req, res) => {
 	res.render('index', {
     title: 'My Crafted World'

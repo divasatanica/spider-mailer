@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-mongoose.connect('mongodb://120.24.70.93:27017/mailer').catch(e => {
+mongoose.connect('mongodb://localhost:27017/mailer').catch(e => {
   console.log(e.message)
 })
 
@@ -12,8 +12,18 @@ con.on('open', () => {
 }) 
 
 let testSchema = new Schema({
-  title: String,
-  author: String
+  address: String,
+  name: String
 })
 
-let Test = mongoose.model('test', testSchema)
+
+
+let Test = mongoose.model('doubantop10subs', testSchema)
+
+Test.find({address: '541199811@qq.com'}, (err, test) => {
+	console.log(test)
+})
+
+// let t = new Test({address: '541199811@qq.com', name: '曾CTO'})
+
+// t.save()

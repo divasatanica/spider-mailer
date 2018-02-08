@@ -2,7 +2,7 @@ const sendMail = require('../modules/send')
 const express = require('express')
 const router = express.Router()
 
-router.put('/new', (req, res) => {
+router.put('/', (req, res) => {
   let data = req.body
 
   if (!data.subject || !data.content) {
