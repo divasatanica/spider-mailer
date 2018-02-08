@@ -84,8 +84,4 @@ function _getKeyValue (opt) {
     return result
 }
 
-getMovieRank().catch(e => {
-    console.log(e)
-})
-
 module.exports = getMovieRank
