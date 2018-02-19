@@ -24,6 +24,6 @@ Test.find({address: '541199811@qq.com'}, (err, test) => {
 	console.log(test)
 })
 
-// let t = new Test({address: '541199811@qq.com', name: '曾CTO'})
+let t = new Test({address: '541199811@qq.com', name: '曾CTO'})
 
-// t.save()
+t.save()
