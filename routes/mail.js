@@ -1,9 +1,14 @@
 const sendMail = require('../modules/server/send')
 const express = require('express')
 const router = express.Router()
+const _Sub = require('../modules/db/index').subs
 
 router.put('/', (req, res) => {
   let data = req.body
+
+  let _sub = _Sub(data.collection)
+  let sub = new _sub()
+
 
   if (!data.subject || !data.content) {
     return res.send({
