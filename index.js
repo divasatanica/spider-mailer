@@ -3,7 +3,6 @@ const getMovieRank = require('./stuff/movies/douban-rank')
 const bootOptions = require('./config/boot')
 
 const movieHTMLRender = require('./stuff/movies/h_gen')
-const sendMail = require('../node-mailer/index')
 
 bootOptions.headless = true
 

@@ -1,11 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const _Sub = require('../modules/db/index').subs
+const map = require('../config/stuff-code')
 
-router.put('/', (req, res) => {
+
+router.put('/:stuff', (req, res) => {
+	let stuff = req.params.stuff
 	let data = req.body
 
-	let _sub = _Sub('doubantop10subs')
+	let _sub = _Sub(map[stuff])
 	let sub = new _sub()
 
 	sub.addSub(data).then(response => {
@@ -18,8 +21,9 @@ router.put('/', (req, res) => {
 	})
 })
 
-router.get('/', (req, res) => {
-	let _sub = _Sub('doubantop10subs')
+router.get('/:stuff', (req, res) => {
+	let stuff = req.params.stuff
+	let _sub = _Sub(map[stuff])
 	let sub = new _sub()
 
 	let pageIndex = req.query.pageIndex || 0
@@ -32,12 +36,6 @@ router.get('/', (req, res) => {
 	}
 
 	sub.findAll(opt).then(response => {
-		if (!response) {
-			return res.send({
-				success: 1,
-				data: []
-			})
-		}
 		return res.send({
 			success: 1,
 			data: response

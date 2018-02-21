@@ -40,13 +40,19 @@ SubSchema.methods.findAll = function (opt, cb) {
   if (pageIndex) {
     return new Promise(function (resolve) {
       Subs(collection).find({}).skip(pageIndex * pageSize).limit(pageSize).exec(function (err, result) {
-        resolve(result)
+        if (Array.isArray(result)) {
+          return resolve(result)
+        }
+        return resolve([])
       })
     })
   }
   return new Promise (function (resolve) {
     Subs(collection).find({}).exec(function (err, result) {
-      resolve(result)
+      if (Array.isArray(result)) {
+        return resolve(result)
+      }
+      return resolve([])
     })
   })
 }
