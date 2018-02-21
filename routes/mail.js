@@ -1,4 +1,4 @@
-const sendMail = require('../modules/send')
+const sendMail = require('../modules/server/send')
 const express = require('express')
 const router = express.Router()
 

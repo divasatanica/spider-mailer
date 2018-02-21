@@ -1,6 +1,6 @@
 const mailer = require('nodemailer')
-const pubs = require('../config/auth')
-const subs = require('../config/subscribers')
+const pubs = require('../../config/auth')
+const subs = require('../../config/subscribers')
 
 class MailOptions {
     constructor(options) {

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const format = require('../../../util/format')
+const format = require('../../util/format')
 
 const isMail = format.isMail
 const isUserName = format.isUserName
