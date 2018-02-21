@@ -26,10 +26,12 @@ function _promiseSend (opt, transporter) {
 }
 
 function send (options) {
-    let subs = options.subs && Array.isArray(options.subs) || []
-
+    let subs = options.subs && Array.isArray(options.subs) ? options.subs : []
     if (!subs.length) {
-        return Promise.resolve({})
+        return Promise.resolve({
+            success: 1,
+            msg: 'Success!'
+        })
     }
     let transporter = mailer.createTransport(pubs[options.service])
     let promises = []
