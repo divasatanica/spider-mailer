@@ -29,7 +29,7 @@ SubSchema.methods.addSub = async function (sub, cb) {
   })
 }
 
-SubSchema.methods.findAll = findAll
+SubSchema.methods.findAll = findAll(Subs)
 
 function Subs (name) {
   return mongoose.model(name, SubSchema)
