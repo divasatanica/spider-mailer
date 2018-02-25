@@ -3,9 +3,9 @@ const getMovieRank = require('./stuff/movies/douban-rank')
 const bootOptions = require('./config/boot')
 
 const movieHTMLRender = require('./stuff/movies/h_gen')
-const sendMail = require('../node-mailer/index')
+const request = require('superagent')
 
-bootOptions.headless = true
+bootOptions.headless = false
 
 let _args = process.argv
 
@@ -13,7 +13,16 @@ switch (_args[3]) {
     case 'douban-top10': {
         getMovieRank(envOpt() || bootOptions).then(data => {
             let html = movieHTMLRender(data)
-            sendMail('豆瓣电影排行榜', html)
+            let date = new Date()
+            request.put('http://localhost:9608/mail/s001')
+                   .send({
+                       subject: `${date.toLocaleDateString()} 豆瓣电影榜`,
+                       content: html,
+                       service: 'qq'
+                   })
+                   .end(res => {
+                       console.log(res)
+                   })
         }).catch(e => {
             console.log(e)
         })

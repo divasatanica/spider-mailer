@@ -10,7 +10,7 @@ const iPhone = devices['iPhone 6'];
 
 // Custom Modules
 const executablePath = require('../../config/boot').executablePath
-const domParse = require('../../modules/domParse')
+const domParse = require('../../modules/spider/domParse')
 const ITEM_COUNT = 3
 const KEY_NAME = {
     '导演': 'director',

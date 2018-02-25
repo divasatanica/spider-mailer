@@ -1,6 +1,5 @@
 const mailer = require('nodemailer')
-const pubs = require('../config/auth')
-const subs = require('../config/subscribers')
+const pubs = require('../../config/auth')
 
 class MailOptions {
     constructor(options) {
@@ -27,6 +26,13 @@ function _promiseSend (opt, transporter) {
 }
 
 function send (options) {
+    let subs = options.subs && Array.isArray(options.subs) ? options.subs : []
+    if (!subs.length) {
+        return Promise.resolve({
+            success: 1,
+            msg: 'Success!'
+        })
+    }
     let transporter = mailer.createTransport(pubs[options.service])
     let promises = []
     for (let i = 0, len = subs.length; i < len; i++) {

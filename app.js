@@ -23,8 +23,8 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 // stuff route
-app.use('/mail', gmail)
-app.use('/subs/doubanmovie', subs)
+app.use('/mail/', gmail)
+app.use('/subs/', subs)
 
 // main route
 app.use('/', (req, res) => {
